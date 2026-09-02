@@ -1,0 +1,112 @@
+---
+title: "Redesign da experiência de checklist em uma SaaS B2B de gestão operacional"
+subtitle: "Design challenge conceitual, feito como teste prático em um processo seletivo para Product Designer Sênior"
+featured: false
+order: 1
+status: draft
+company: "Design challenge, processo seletivo"
+period: "3 dias"
+platform: "SaaS B2B, desktop e mobile"
+disciplines: ["Product Design"]
+myRole: "Projeto individual: enquadramento do problema, priorização, benchmarking, decisões de design, mockups navegáveis e apresentação da solução. Usei IA como parceria de pensamento para estruturar diagnóstico, comparar referências e pressionar meus próprios argumentos. As decisões de design e a defesa delas são minhas, o uso de IA era previsto e declarado no briefing do desafio."
+teamContext: "Projeto individual, sem time."
+summary:
+  problem: "Uma tela só atendia dois trabalhos opostos. Quem cria está na matriz, no desktop, faz isso raramente e precisa de precisão. Quem aplica está no chão de loja, no celular, faz isso todo dia e é interrompido o tempo todo, sem ser guiado no momento que mais importa: registrar uma não conformidade."
+  action: "Reformulei o problema de \"experiência confusa\" para \"uma ferramenta, dois trabalhos opostos\" e redesenhei três telas, entrada, criação e aplicação, cada uma para o seu contexto. Entrada prioriza retomar o que foi interrompido. Criação vira progressão em etapas, com reuso como atalho de primeira classe. Aplicação é mobile-first e conduz o registro de não conformidade com gravidade, foto e plano de ação."
+  outcome: "Entrega conceitual: mockups navegáveis, sem publicação nem teste com usuário real, então sem métrica pra mostrar. O aprendizado principal foi que acertar o enquadramento valeu mais que qualquer decisão de tela isolada, e que fricção bem calibrada, menos na rotina diária e mais na publicação, foi a decisão mais madura do projeto."
+metrics: []
+confidential: false
+private: false
+cover: "/cases/checklist-cover.jpg"
+coverAlt: "Placeholder da capa do case de redesign de checklist, aguardando mockup real"
+thumbnail: "/cases/checklist-thumb.jpg"
+thumbnailAlt: "Placeholder da miniatura do case de redesign de checklist"
+ogImage: "/cases/checklist-cover.jpg"
+description: "Redesign de um sistema de checklist onde criar (matriz, desktop, raro) e aplicar (loja, celular, diário) disputavam a mesma interface. Design challenge de processo seletivo, três dias de prazo, com foco em enquadramento de problema e tradeoffs."
+---
+
+import Figure from '../../components/mdx/Figure.astro';
+import CompareImages from '../../components/mdx/CompareImages.astro';
+import Callout from '../../components/mdx/Callout.astro';
+
+<Callout variant="note" title="Sobre este case">
+  Imagens desta página são placeholder, aguardando os mockups reais. Status: draft até a troca.
+</Callout>
+
+## Contexto
+
+Uma rede de varejo esportivo com dezenas de lojas precisa manter o mesmo padrão de operação em todas as unidades. O checklist é a ferramenta que carrega esse padrão: define o que é uma loja bem operada e prova, unidade por unidade, que ela está de pé. Ele vive dentro de uma plataforma SaaS B2B de gestão de redes.
+
+O sistema existente funcionava, mas a experiência atrapalhava os dois lados. Criar um checklist exigia atravessar uma tela densa, com metadados, perguntas e regras de pontuação empilhados de uma vez. Aplicar não orientava ninguém: quem estava na loja, no celular, entre uma interrupção e outra, ficava sozinho justamente no momento em que o sistema mais deveria ajudar.
+
+Este é um redesign conceitual, entregue como teste prático de processo seletivo, com três dias de prazo. O escopo foram três telas: a entrada do módulo, a criação e a aplicação do checklist. Não houve pesquisa com usuário real nem publicação, então o case não vende impacto, vende enquadramento de problema, priorização e tradeoffs.
+
+## O problema
+
+**Para o usuário.** A tela era uma só, mas os trabalhos eram dois, e opostos. Quem cria está na matriz, no desktop, faz isso raramente e precisa de precisão. Enfrentava uma parede de campos, sem progressão e sem reuso do que já existia. Quem aplica está no chão de loja, no celular, faz isso todo dia e é interrompido o tempo todo. Não era guiado no único momento que realmente importa para o negócio: registrar uma não conformidade.
+
+**Para o negócio.** Padrão de operação em escala depende de duas coisas: checklist fácil de montar e reaproveitar, e auditoria confiável na ponta. Criação com fricção significa checklist desatualizado. Não conformidade mal registrada significa dado que não fecha e problema que ninguém consegue corrigir. O custo não aparece na tela, aparece no relatório da rede.
+
+**O reframe que orientou tudo.** O briefing chegava como "a experiência está confusa". Isso é sintoma. A causa é uma ferramenta genérica atendendo dois trabalhos com contextos, frequências e dispositivos opostos. A partir daí, cada tela passou a ser desenhada para o seu trabalho, não para a média entre os dois.
+
+## A solução em destaque
+
+- **Entrada que lidera pela tarefa recorrente.** O peso visual segue a frequência de uso, e "retomar" aparece antes de "iniciar", porque auditoria interrompida é a regra, não a exceção.
+- **Criação em momentos progressivos, com reuso como caminho de primeira classe.** Informações básicas, perguntas e regras deixam de disputar a mesma tela. Duplicar um checklist existente vira atalho visível, não recurso escondido.
+- **Aplicação mobile-first que conduz a não conformidade.** Resposta conforme passa silenciosa e rápida. Ao marcar não conforme, o sistema assume o volante e pede gravidade, evidência em foto e plano de ação.
+- **Fricção calibrada por consequência.** Tirei fricção da rotina diária e adicionei de propósito na publicação, porque um erro publicado vai para todas as lojas ao mesmo tempo.
+
+O fio que liga os três: o sistema trabalha mais exatamente onde o negócio tem mais a perder.
+
+## Processo
+
+- **Enquadramento.** Reformulei o problema de "experiência confusa" para "uma ferramenta, dois trabalhos opostos". Foi a decisão de maior alcance do projeto: definiu o que entrava em cada tela e o que ficava de fora.
+- **Pesquisa.** Sem acesso a usuário real, o que assumo abertamente. Supri com benchmarking por problema, não por produto: cada referência entrou para resolver uma dor mapeada. SafetyCulture como referência central de auditoria em campo, além de padrões de criação progressiva e de reuso vindos de ferramentas de formulário e de produto.
+- **Priorização.** Com três dias de prazo, cobrir tudo com profundidade rasa seria o caminho fácil e o resultado pior. Mapeei as dores, escolhi três para atacar de verdade e deixei fora do escopo, de forma declarada, a configuração de pontuação e a tela de conclusão. O corte é parte do argumento, não uma lacuna.
+- **Suposições explícitas.** Aplicação acontece no celular. Pontuação interessa à gestão, não a quem cria ou aplica. A conexão na loja é instável. Documentei todas, para que a defesa do case fosse sobre decisões e não sobre adivinhação.
+- **Exploração.** Fui direto para mockups navegáveis, respeitando a identidade visual da marca fictícia do desafio. A navegabilidade era o ponto: as decisões estavam nos estados e nas transições, não em telas estáticas.
+
+## A interface
+
+<Figure
+  src="/cases/checklist-mobile-aplicacao.jpg"
+  alt="Placeholder da tela de aplicação no mobile, com o estado de não conformidade aberto"
+  caption="Tela de aplicação no mobile, com o estado de não conformidade aberto"
+/>
+
+<Callout variant="note">
+  - Conforme passa em um toque. Não conforme abre condução: gravidade, foto e plano de ação.
+  - Pensada para conexão instável no chão de loja: o progresso é preservado.
+  - Alvos de toque e contraste dimensionados para uso em pé, com uma mão só.
+</Callout>
+
+<Figure
+  src="/cases/checklist-entrada-modulo.jpg"
+  alt="Placeholder da tela de entrada do módulo"
+  caption="Retomar vem antes de iniciar. O primeiro segundo responde 'onde eu parei', não 'o que existe aqui'."
+/>
+
+<Figure
+  src="/cases/checklist-criacao-desktop.jpg"
+  alt="Placeholder da tela de criação, no desktop"
+  caption="A criação virou progressão. Cada momento pede uma decisão por vez, e publicar exige confirmação: o erro aqui vai para a rede inteira."
+/>
+
+<CompareImages
+  beforeSrc="/cases/checklist-criacao-antes.jpg"
+  beforeAlt="Placeholder do antes da tela de criação"
+  afterSrc="/cases/checklist-criacao-depois.jpg"
+  afterAlt="Placeholder do depois da tela de criação"
+  beforeLabel="Antes"
+  afterLabel="Depois"
+/>
+
+O mesmo conteúdo, redistribuído por momento de decisão.
+
+## Resultado e aprendizados
+
+Projeto conceitual, sem métrica e sem teste com usuário. Não tenho número para mostrar e não vou inventar um. O que ficou:
+
+- Acertar o enquadramento valeu mais do que qualquer decisão de tela isolada. Se eu tivesse aceitado "está confuso" como problema, teria entregue uma limpeza visual em cima da mesma estrutura errada.
+- Fricção não é vilã, é ferramenta. Saber onde remover (rotina diária) e onde adicionar (publicação para toda a rede) foi a decisão mais madura do projeto.
+- O que eu testaria com tempo e usuário real: se a condução da não conformidade acelera ou atrapalha o auditor apressado, e se a progressão na criação tira poder de quem cria checklist em volume.
