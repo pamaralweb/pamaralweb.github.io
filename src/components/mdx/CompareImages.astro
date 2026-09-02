@@ -1,0 +1,30 @@
+---
+interface Props {
+    beforeSrc: string;
+    beforeAlt: string;
+    afterSrc: string;
+    afterAlt: string;
+    beforeLabel?: string;
+    afterLabel?: string;
+}
+
+const {
+    beforeSrc,
+    beforeAlt,
+    afterSrc,
+    afterAlt,
+    beforeLabel = "Antes",
+    afterLabel = "Depois",
+} = Astro.props;
+---
+
+<div class="my-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <figure>
+        <img src={beforeSrc} alt={beforeAlt} loading="lazy" class="w-full rounded-lg" />
+        <figcaption class="text-sm opacity-75 mt-2 text-center">{beforeLabel}</figcaption>
+    </figure>
+    <figure>
+        <img src={afterSrc} alt={afterAlt} loading="lazy" class="w-full rounded-lg" />
+        <figcaption class="text-sm opacity-75 mt-2 text-center">{afterLabel}</figcaption>
+    </figure>
+</div>

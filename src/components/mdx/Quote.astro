@@ -1,0 +1,23 @@
+---
+interface Props {
+    author?: string;
+    role?: string;
+}
+
+const { author, role } = Astro.props;
+---
+
+<blockquote class="border-l-4 border-primary pl-4 my-6 italic not-prose">
+    <p class="text-lg">
+        <slot />
+    </p>
+    {
+        (author || role) && (
+            <footer class="text-sm opacity-75 mt-2 not-italic">
+                {author}
+                {author && role && ", "}
+                {role}
+            </footer>
+        )
+    }
+</blockquote>

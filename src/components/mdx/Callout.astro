@@ -1,0 +1,21 @@
+---
+interface Props {
+    variant?: "info" | "warning" | "note";
+    title?: string;
+}
+
+const { variant = "note", title } = Astro.props;
+
+const alertClass: Record<string, string> = {
+    info: "alert-info",
+    warning: "alert-warning",
+    note: "",
+};
+---
+
+<div class={`alert ${alertClass[variant]} flex-col items-start text-left my-6 not-prose`} role="note">
+    {title && <p class="font-bold">{title}</p>}
+    <div class="text-sm">
+        <slot />
+    </div>
+</div>

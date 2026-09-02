@@ -1,0 +1,24 @@
+---
+interface Props {
+    problem: string;
+    action: string;
+    outcome: string;
+}
+
+const { problem, action, outcome } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 not-prose">
+    <div class="bg-base-200 rounded-lg p-4">
+        <h2 class="text-sm font-bold uppercase opacity-75 mb-2">Problema</h2>
+        <p>{problem}</p>
+    </div>
+    <div class="bg-base-200 rounded-lg p-4">
+        <h2 class="text-sm font-bold uppercase opacity-75 mb-2">Ação</h2>
+        <p>{action}</p>
+    </div>
+    <div class="bg-base-200 rounded-lg p-4">
+        <h2 class="text-sm font-bold uppercase opacity-75 mb-2">Resultado</h2>
+        <p>{outcome}</p>
+    </div>
+</div>

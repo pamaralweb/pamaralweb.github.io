@@ -1,0 +1,28 @@
+---
+interface Metric {
+    label: string;
+    value: string;
+    note?: string;
+    isAbsolute?: boolean;
+}
+
+interface Props {
+    metrics: Metric[];
+}
+
+const { metrics } = Astro.props;
+---
+
+{
+    metrics.length > 0 && (
+        <div class="stats stats-vertical md:stats-horizontal shadow w-full my-6">
+            {metrics.map((metric) => (
+                <div class="stat">
+                    <div class="stat-title">{metric.label}</div>
+                    <div class="stat-value text-2xl">{metric.value}</div>
+                    {metric.note && <div class="stat-desc">{metric.note}</div>}
+                </div>
+            ))}
+        </div>
+    )
+}
