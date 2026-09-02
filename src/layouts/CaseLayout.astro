@@ -1,0 +1,100 @@
+---
+import { CaseSchema } from "../content.config";
+import BaseLayout from "./BaseLayout.astro";
+import CaseSummary from "../components/mdx/CaseSummary.astro";
+import MetricRow from "../components/mdx/MetricRow.astro";
+import Callout from "../components/mdx/Callout.astro";
+
+export interface Props extends CaseSchema {}
+
+const {
+    title,
+    subtitle,
+    company,
+    period,
+    platform,
+    disciplines,
+    myRole,
+    teamContext,
+    summary,
+    metrics,
+    confidential,
+    cover,
+    coverAlt,
+    ogImage,
+    description,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={ogImage ?? cover}>
+    <main class="md:flex md:justify-center">
+        <article class="prose prose-lg max-w-[900px] w-full">
+            {
+                cover && (
+                    <img
+                        width={1200}
+                        height={675}
+                        src={cover}
+                        alt={coverAlt ?? ""}
+                        class="w-full aspect-video object-cover mb-6 rounded-lg not-prose"
+                        loading="eager"
+                    />
+                )
+            }
+
+            <h1 class="title my-2 text-4xl font-bold">{title}</h1>
+            {subtitle && <p class="text-xl opacity-75">{subtitle}</p>}
+
+            <div class="flex flex-wrap gap-2 my-4 not-prose">
+                {company && <div class="badge badge-outline">{company}</div>}
+                {period && <div class="badge badge-outline">{period}</div>}
+                {platform && <div class="badge badge-outline">{platform}</div>}
+                {disciplines?.map((discipline) => <div class="badge badge-secondary">{discipline}</div>)}
+            </div>
+
+            {
+                (myRole || teamContext) && (
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6 not-prose">
+                        {myRole && (
+                            <div>
+                                <h2 class="text-sm font-bold uppercase opacity-75 mb-1">Minha atuação</h2>
+                                <p>{myRole}</p>
+                            </div>
+                        )}
+                        {teamContext && (
+                            <div>
+                                <h2 class="text-sm font-bold uppercase opacity-75 mb-1">Time</h2>
+                                <p>{teamContext}</p>
+                            </div>
+                        )}
+                    </div>
+                )
+            }
+
+            {
+                confidential && (
+                    <Callout variant="warning" title="Conteúdo sob NDA">
+                        Alguns detalhes deste case foram omitidos ou generalizados por acordo de confidencialidade
+                        com a empresa. Métricas aqui são sempre relativas, nunca valores absolutos.
+                    </Callout>
+                )
+            }
+
+            {
+                summary && (summary.problem || summary.action || summary.outcome) && (
+                    <CaseSummary
+                        problem={summary.problem ?? ""}
+                        action={summary.action ?? ""}
+                        outcome={summary.outcome ?? ""}
+                    />
+                )
+            }
+
+            {metrics && metrics.length > 0 && <MetricRow metrics={metrics} />}
+
+            <div class="divider my-2"></div>
+
+            <slot />
+        </article>
+    </main>
+</BaseLayout>
