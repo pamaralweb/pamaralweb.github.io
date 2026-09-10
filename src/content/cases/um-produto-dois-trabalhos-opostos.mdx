@@ -1,0 +1,241 @@
+---
+title: "Um produto, dois trabalhos opostos"
+subtitle: "Como separar quem define o padrão de quem cumpre o padrão destravou o checklist de uma rede de varejo"
+featured: false
+order: 2
+status: draft
+company: "Design challenge, processo seletivo"
+platform: "Web (desktop) e mobile"
+disciplines: ["Product Design", "UX Design", "UI Design"]
+myRole: "Projeto individual: diagnóstico, benchmarking, priorização, redesign das três telas e defesa das decisões. Usei IA (Claude) como parceria de pensamento para estruturar o diagnóstico, a priorização e o benchmarking. As decisões de design, a execução e a defesa são minhas."
+teamContext: "Solo. Sem PM, sem devs, sem acesso a usuários reais."
+summary:
+  problem: "Um mesmo produto atendia dois trabalhos opostos, criar o padrão e cumprir o padrão, com a mesma linguagem e o mesmo peso visual. Cada tela pagava o preço de ter sido desenhada para a outra."
+  action: "Reenquadrei o problema, priorizei as dores por severidade, usei benchmarking dirigido por dor e redesenhei as três telas separando criação (desktop, densa, com reuso) de aplicação (mobile-first, linear, conduzida)."
+  outcome: "[FALTA: desfecho do processo seletivo e feedback da banca, preencher quando tiver essa informação]"
+metrics: []
+confidential: false
+private: false
+cover: "/cases/produto-dois-trabalhos-cover.jpg"
+coverAlt: "Placeholder da capa do case, aguardando mockup real"
+thumbnail: "/cases/produto-dois-trabalhos-thumb.jpg"
+thumbnailAlt: "Placeholder da miniatura do case"
+ogImage: "/cases/produto-dois-trabalhos-cover.jpg"
+description: "Redesign do checklist de auditoria de uma rede de varejo com dezenas de lojas, separando quem define o padrão de quem cumpre o padrão. Teste prático de processo seletivo, com foco em enquadramento de problema, priorização e defesa de decisões."
+---
+
+import Figure from '../../components/mdx/Figure.astro';
+import Callout from '../../components/mdx/Callout.astro';
+import Quote from '../../components/mdx/Quote.astro';
+
+<Callout variant="note" title="Sobre este case">
+  Imagens desta página são placeholder, aguardando os frames reais. Faltam também o
+  período do teste, o prazo dado pela empresa e o desfecho do processo seletivo.
+  Status: draft até tudo isso ser preenchido.
+</Callout>
+
+## Contexto
+
+Um teste prático me deu três telas de um produto real de gestão de redes: a home do
+módulo, a criação de checklist e a aplicação de checklist. O cenário era o de uma rede
+de varejo esportivo com dezenas de lojas pelo Brasil, onde o checklist é o instrumento
+que carrega o padrão de qualidade, é como a matriz define o que é uma loja bem operada
+e como cada unidade prova que está entregando isso.
+
+Era um redesign de produto existente, com o briefing apontando que a criação tinha
+passos demais e que a aplicação não orientava bem o usuário. Não havia acesso a
+usuários reais, dados de uso ou stakeholders para entrevistar.
+
+Trabalhei sozinho, do diagnóstico à alta fidelidade.
+
+## O problema
+
+Antes de resolver o que o briefing apontava, precisei entender por que aqueles
+sintomas existiam. A resposta mudou o projeto inteiro.
+
+**Para o usuário.** O produto tratava dois usuários muito diferentes como se fossem um
+só. O gestor de operações na matriz define uma vez um checklist que dezenas de lojas
+vão seguir: tarefa rara, feita com calma no desktop, de alta consequência, porque um
+erro se multiplica por todas as unidades. Ele precisa de poder e estrutura. O gerente
+de loja abre a unidade às 8h com o celular na mão e precisa passar o checklist rápido,
+registrando não conformidade com foto no lugar: tarefa diária, de alta frequência e
+tolerância zero a fricção. Ele precisa de velocidade e orientação. Os dois recebiam a
+mesma interface.
+
+**Para o negócio.** A rede só existe como marca se o padrão de qualidade se mantiver
+em escala. O checklist é o mecanismo que sustenta isso, e o dado mais valioso que ele
+produz é a não conformidade, porque é o que dispara ação corretiva. Só que, na tela
+original, era exatamente esse registro o menos guiado: marcar "Não" não puxava nada, e
+foto e plano de ação eram botões opcionais soltos, com o mesmo peso de um comentário.
+O sistema estava desenhado para coletar respostas, não para produzir ação.
+
+### O reframe
+
+<Quote>
+  Uma ferramenta genérica para dois trabalhos opostos.
+</Quote>
+
+Definir um padrão e cumprir um padrão foram espremidos na mesma experiência
+indiferenciada. Isso não é uma dor entre outras, é a raiz de todas elas: a criação
+parece pesada porque foi desenhada com a leveza que a aplicação exigia, e a aplicação
+não guia ninguém porque herdou a densidade que a criação pedia. Cada tela paga o preço
+de ter sido pensada para a outra.
+
+Com esse enquadramento, o trabalho deixou de ser "melhorar três telas" e passou a ser
+"separar dois produtos que estavam sobrepostos".
+
+<Figure
+  src="/cases/produto-dois-trabalhos-dores.jpg"
+  alt="Placeholder do painel de dores, classificadas por severidade nas três telas"
+  caption="Mapeei as dores tela a tela e classifiquei por severidade. Todas as marcadas como altas eram sintoma da mesma causa raiz."
+/>
+
+## Suposições que assumi (e por quê)
+
+Sem acesso a usuário, a escolha honesta não é fingir pesquisa, é declarar suposição e
+assumir a responsabilidade por ela. Deixei quatro explícitas no próprio material
+entregue:
+
+- A aplicação acontece majoritariamente no mobile ou tablet, no chão da loja, mesmo
+  que o print original mostrasse desktop. Essa suposição sozinha reescreve a tela de
+  aplicação inteira.
+- Criação é tarefa de baixa frequência e alta consequência. Aplicação é de alta
+  frequência e baixa tolerância a fricção.
+- O sistema de pontuação existe para a gestão regional medir conformidade, não para
+  ajudar quem cria ou quem aplica. Logo, ele informa, mas não deve comandar a
+  interface.
+- A rede tem volume alto de lojas, então consistência e reuso importam mais do que
+  flexibilidade infinita.
+
+Declarar as suposições foi o que permitiu defender as decisões depois. Sem elas, o
+redesign seria só preferência estética.
+
+## A solução em destaque
+
+- **Home que lidera pela tarefa recorrente.** A tela deixou de ser um menu de cinco
+  opções de peso idêntico. Retomar uma auditoria em andamento vem antes de iniciar uma
+  nova, aplicar domina a tela, e as funções de matriz (gerenciar, painéis, exportar,
+  configurar) recuam para peso secundário.
+- **Criação quebrada em três momentos.** Básico, perguntas, e regras e pontuação. O
+  gestor define o nome, a categoria e a recorrência, depois monta as perguntas, depois
+  ajusta pontuação. Resolve a densidade sem progressão e tira a pontuação da frente de
+  quem só quer escrever uma pergunta.
+- **Reuso como caminho de primeira classe.** Começar de um modelo passa a ser operação
+  padrão, não exceção. Num contexto de rede, cada checklist nascer do zero é o oposto
+  do que o negócio precisa.
+- **Não conformidade conduzida.** Resposta conforme passa silenciosa. Marcar "Não
+  conforme" revela, na sequência, gravidade, foto de evidência, plano de ação,
+  responsável e prazo.
+- **Aplicação mobile-first, fluxo único.** Uma pergunta conduzindo à próxima, sem
+  painel lateral dividindo o estado, com salvamento offline visível.
+
+## Processo
+
+- **Diagnóstico antes de solução.** Mapeei as dores das três telas e classifiquei por
+  severidade, em vez de sair redesenhando. Foi esse mapa que revelou que as dores
+  altas eram todas sintoma da mesma causa.
+- **Benchmarking dirigido por dor, não por inspiração.** Cada referência entrou para
+  resolver uma dor específica: Shopify e Linear resolveram a hierarquia da home,
+  Typeform, Google Forms e Notion resolveram a criação, SafetyCulture foi o benchmark
+  central para a aplicação mobile-first conduzida, e a lógica condicional no padrão de
+  Typeform eliminou o ruído das ações repetidas embaixo de toda pergunta.
+- **Priorização explícita.** Fechei o diagnóstico com um exercício de corte: se eu só
+  pudesse consertar três coisas, seriam separar criar de aplicar desenhando a
+  aplicação para o mobile, conduzir a não conformidade, e trazer reuso e progressão
+  para a criação.
+- **Fui direto para alta fidelidade.** Com três telas existentes como base e prazo
+  curto, o risco não estava na estrutura, estava na densidade e na hierarquia visual.
+- **Não fiz teste de usabilidade.** Sem usuário disponível e sem prazo para recrutar,
+  teria sido teatro. Descrevo abaixo como validaria.
+
+<Figure
+  src="/cases/produto-dois-trabalhos-benchmarking.jpg"
+  alt="Placeholder do painel de benchmarking"
+  caption="Cada referência entrou amarrada a uma decisão de design, nunca como inspiração solta."
+/>
+
+## A interface
+
+<Figure
+  src="/cases/produto-dois-trabalhos-home.jpg"
+  alt="Placeholder da home redesenhada, com Continue de onde parou e a lista de checklists atribuídos"
+  caption="Home redesenhada, com 'Continue de onde parou' e a lista de checklists atribuídos"
+/>
+
+<Callout variant="note">
+  - "Continue de onde parou" ocupa o topo com estado real da tarefa: percentual,
+  tempo parado e não conformidades já registradas. Quem retoma é o caso mais
+  frequente, então é o que lidera a tela.
+  - Os checklists atribuídos trazem a recorrência (diário, semanal) e o tamanho
+  (perguntas e seções) antes do clique, porque o gerente decide o que rodar pelo tempo
+  que tem.
+  - As quatro funções de matriz continuam acessíveis, mas em peso secundário e com
+  rótulos na língua do usuário. "Parametrizar" saiu: ninguém pensa "vou parametrizar",
+  pensa "preciso auditar a loja".
+</Callout>
+
+<Figure
+  src="/cases/produto-dois-trabalhos-criacao.jpg"
+  alt="Placeholder da tela de criação de checklist, com as abas Básico, Perguntas, Regras e pontuação"
+  caption="Tela de criação de checklist, com as abas Básico, Perguntas, Regras e pontuação"
+/>
+
+<Callout variant="note">
+  - A criação virou progressão em três momentos. A aba ativa é Perguntas, porque é
+  onde o gestor passa mais tempo.
+  - Cada pergunta mostra tipo de resposta, obrigatoriedade e pontuação como metadado
+  discreto, editável, e não mais como bloco de percentuais que competia com o
+  enunciado.
+  - Reordenar é arrastar, não uma setinha em coluna de ações. Editar é um alvo claro,
+  não um lápis de 16 pixels.
+  - O estado Rascunho e o botão Publicar deixam explícito que existe um momento de
+  virada: o padrão só vale para a rede quando é publicado.
+</Callout>
+
+<Figure
+  src="/cases/produto-dois-trabalhos-aplicacao.jpg"
+  alt="Placeholder da sequência de três estados da aplicação mobile: fluxo padrão, não conformidade aberta, retorno ao fluxo"
+  caption="Sequência de três estados da aplicação mobile: fluxo padrão, não conformidade aberta, retorno ao fluxo"
+/>
+
+<Callout variant="note">
+  - Fluxo único, uma pergunta por vez, com "Seção 1 de 3" e "2 de 8" resolvendo a
+  orientação que antes exigia um painel lateral inteiro.
+  - "Salvo offline" é permanente no cabeçalho. Loja tem sinal ruim, e a confiança de
+  que a resposta não se perdeu é requisito, não detalhe.
+  - Marcar "Não conforme" abre o registro conduzido: gravidade, foto, plano de ação,
+  responsável e prazo. Nas respostas conformes, nada disso aparece.
+  - As ações de evidência sumiram de baixo das perguntas conformes. O que era ruído
+  constante virou resposta contextual.
+</Callout>
+
+## Resultado
+
+<Callout variant="warning" title="Aguardando informação">
+  Desfecho do processo seletivo e feedback da banca ainda não preenchidos aqui.
+</Callout>
+
+### Como eu validaria
+
+Com acesso a usuários, três coisas em ordem de risco:
+
+1. **Teste moderado com cinco gerentes de loja**, aplicando um checklist real na loja,
+   no horário de abertura. A métrica é conclusão sem ajuda e tempo até a primeira não
+   conformidade registrada com foto.
+2. **Teste com três gestores de operações** montando um checklist do zero e a partir
+   de modelo. A pergunta é se a progressão em três momentos reduz abandono na criação
+   ou só adiciona cliques.
+3. **Dado de produto**, se existisse: proporção de não conformidades com foto e plano
+   de ação preenchidos antes e depois. É a métrica que amarra direto ao problema de
+   negócio.
+
+### Aprendizados
+
+O ganho maior do projeto não veio de nenhuma tela. Veio de perceber que o briefing
+descrevia sintomas ("muitos passos", "não orienta bem") e que aceitar essa formulação
+teria produzido um redesign cosmético. O trabalho real foi encontrar a causa comum.
+
+O que eu faria diferente: reservaria tempo para uma rodada rápida de teste, mesmo que
+com usuários aproximados, porque a suposição de que a aplicação é majoritariamente
+mobile carrega o redesign inteiro da terceira tela. Ela é bem fundamentada, mas
+continua sendo suposição, e eu preferiria tê-la testada a tê-la defendida.
