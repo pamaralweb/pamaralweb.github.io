@@ -1,17 +1,21 @@
 ---
 const { sideBarActiveItemID } = Astro.props;
-const activeClass = "bg-base-300"; // For primary color replace with `active` class
 ---
 
-<ul class="menu grow shrink menu-md overflow-y-auto">
-    <li><a class="py-3 text-base" id="home" href="/">Início</a></li>
-    <li><a class="py-3 text-base" id="trabalhos" href="/trabalhos/">Trabalhos</a></li>
-    <li><a class="py-3 text-base" id="sobre" href="/sobre/">Sobre</a></li>
-    <li><a class="py-3 text-base" href="/cv-patrick-amaral.pdf" target="_blank">Currículo</a></li>
-    <!-- Blog fora do menu por enquanto: rota /blog/ segue funcionando, sem link visível até ter ritmo de publicação -->
-</ul>
+<nav class="flex-1 overflow-y-auto px-4 py-2">
+    <ul class="flex flex-col gap-1 text-sm">
+        <li><a class="block rounded-lg px-3 py-2.5 text-muted transition-colors hover:bg-surface hover:text-ink" id="home" href="/">Início</a></li>
+        <li><a class="block rounded-lg px-3 py-2.5 text-muted transition-colors hover:bg-surface hover:text-ink" id="trabalhos" href="/trabalhos/">Trabalhos</a></li>
+        <li><a class="block rounded-lg px-3 py-2.5 text-muted transition-colors hover:bg-surface hover:text-ink" id="sobre" href="/sobre/">Sobre</a></li>
+        <li><a class="block rounded-lg px-3 py-2.5 text-muted transition-colors hover:bg-surface hover:text-ink" href="/cv-patrick-amaral.pdf" target="_blank">Currículo</a></li>
+        <!-- Blog fora do menu por enquanto: rota /blog/ segue funcionando, sem link visível até ter ritmo de publicação -->
+    </ul>
+</nav>
 
-<script define:vars={{ sideBarActiveItemID: sideBarActiveItemID, activeClass: activeClass }}>
+<script define:vars={{ sideBarActiveItemID }}>
 const activeItemElem = document.getElementById(sideBarActiveItemID);
-activeItemElem.classList.add(activeClass);
+if (activeItemElem) {
+    activeItemElem.classList.remove("text-muted");
+    activeItemElem.classList.add("bg-surface", "text-ink", "font-medium");
+}
 </script>

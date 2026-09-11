@@ -4,19 +4,19 @@ import SideBarMenu from "./SideBarMenu.astro";
 const { sideBarActiveItemID } = Astro.props;
 ---
 
-<div class="drawer-side z-40">
-  <label for="my-drawer" class="drawer-overlay"></label>
-  <aside class="px-2 pt-2 h-auto min-h-full w-[19rem] bg-base-200 text-base-content flex flex-col">
-    <div class="w-fit mx-auto mt-5 mb-6">
-      <a href="/">
-        <div class="avatar transition ease-in-out hover:scale-[102%] block m-auto">
-          <div class="w-[8.5rem]">
-            <img class="mask mask-circle aspect-square object-cover" width={300} height={300} src="/profile.jpg" alt="Profile image" />
-          </div>
-        </div>
-      </a>
-    </div>
-    <SideBarMenu sideBarActiveItemID={sideBarActiveItemID} />
-    <SideBarFooter />
-  </aside>
-</div>
+<aside
+  class="fixed inset-y-0 left-0 z-40 flex w-[260px] -translate-x-full flex-col border-r border-line bg-canvas transition-transform duration-200 peer-checked:translate-x-0 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0"
+>
+  <a href="/" class="flex items-center gap-3 px-6 py-8">
+    <img
+      src="/profile.jpg"
+      alt="Foto de perfil de Patrick Amaral"
+      width="44"
+      height="44"
+      class="h-11 w-11 rounded-xl object-cover"
+    />
+    <span class="font-display text-base font-semibold">Patrick Amaral</span>
+  </a>
+  <SideBarMenu sideBarActiveItemID={sideBarActiveItemID} />
+  <SideBarFooter />
+</aside>

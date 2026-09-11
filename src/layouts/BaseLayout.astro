@@ -10,23 +10,26 @@ const { image, title = SITE_TITLE, description = SITE_DESCRIPTION, includeSideba
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="pt-br">
   <head>
     <BaseHead title={title} description={description} image={image} />
   </head>
-  <body>
-    <div class="bg-base-100 drawer lg:drawer-open">
-      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content bg-base-100">
-        <Header title={SITE_TITLE} />
-        <div class="md:flex md:justify-center">
-          <main class="p-6 pt-10 basis-[900px]">
-            <slot />
-          </main>
-        </div>
+  <body class="bg-canvas text-ink">
+    <div class="lg:flex">
+      <input id="nav-toggle" type="checkbox" class="peer hidden" />
+      <label
+        for="nav-toggle"
+        class="fixed inset-0 z-30 hidden bg-ink/40 peer-checked:block lg:hidden"
+        aria-hidden="true"
+      ></label>
+      {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
+      <div class="flex min-h-screen flex-1 flex-col">
+        <Header title={SITE_TITLE} includeSidebar={includeSidebar} />
+        <main class="mx-auto w-full max-w-[880px] flex-1 px-6 py-10 lg:px-14 lg:py-16">
+          <slot />
+        </main>
         <Footer />
       </div>
-      {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
     </div>
   </body>
 </html>
