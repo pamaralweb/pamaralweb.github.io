@@ -20,20 +20,20 @@ const disciplinesInUse = Array.from(
 
     {
         cases.length === 0 ? (
-            <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
-                <p class="font-bold">Ainda não há cases publicados.</p>
-                <p>Volte em breve.</p>
+            <div class="rounded-xl border border-line bg-surface p-4">
+                <p class="font-semibold">Ainda não há cases publicados.</p>
+                <p class="text-muted">Volte em breve.</p>
             </div>
         ) : (
             <>
                 {
                     disciplinesInUse.length > 1 && (
                         <div class="flex flex-wrap gap-2 mb-6" id="discipline-filter">
-                            <button type="button" class="btn btn-sm btn-active" data-discipline="all">
+                            <button type="button" class="tag tag-accent" data-discipline="all">
                                 Todos
                             </button>
                             {disciplinesInUse.map((discipline) => (
-                                <button type="button" class="btn btn-sm btn-outline" data-discipline={discipline}>
+                                <button type="button" class="tag" data-discipline={discipline}>
                                     {discipline}
                                 </button>
                             ))}
@@ -41,7 +41,7 @@ const disciplinesInUse = Array.from(
                     )
                 }
 
-                <ul id="case-list">
+                <ul class="flex flex-col gap-4" id="case-list">
                     {cases.map((entry) => (
                         <li data-disciplines={entry.data.disciplines.join(",")}>
                             <HorizontalCard
@@ -53,7 +53,6 @@ const disciplinesInUse = Array.from(
                                 badge={entry.data.confidential ? "Confidencial" : undefined}
                                 tags={entry.data.disciplines}
                             />
-                            <div class="divider my-0" />
                         </li>
                     ))}
                 </ul>
@@ -70,8 +69,8 @@ const disciplinesInUse = Array.from(
         const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-discipline]");
         if (!button) return;
 
-        filterBar.querySelectorAll("button").forEach((b) => b.classList.remove("btn-active"));
-        button.classList.add("btn-active");
+        filterBar.querySelectorAll("button").forEach((b) => b.classList.remove("tag-accent"));
+        button.classList.add("tag-accent");
 
         const selected = button.dataset.discipline;
         items.forEach((item) => {
