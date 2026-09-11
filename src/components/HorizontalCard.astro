@@ -2,36 +2,33 @@
 const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
 ---
 
-<div
-  class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
->
-  <a href={url} target={target}>
-    <div class="hero-content flex-col md:flex-row">
+<div class="card transition-shadow hover:shadow-md">
+  <a href={url} target={target} class="flex flex-col gap-4 p-4 md:flex-row">
+    {
+      img && (
+        <img
+          src={img}
+          width={750}
+          height={422}
+          alt={title}
+          class="aspect-video w-full rounded-lg object-cover md:w-52 md:flex-shrink-0"
+          loading="lazy"
+        />
+      )
+    }
+    <div class="flex min-w-0 grow flex-col justify-center gap-2">
+      <h3 class="font-display text-lg font-semibold text-ink">
+        {title}
+        {badge && <span class="tag tag-accent ml-2 align-middle">{badge}</span>}
+      </h3>
+      {desc && <p class="text-sm text-muted">{desc}</p>}
       {
-        img && (
-          <img
-            src={img}
-            width={750}
-            height={422}
-            alt={title}
-            class="max-w-full md:max-w-[13rem] aspect-video object-cover rounded-lg"
-            loading="lazy"
-          />
+        tags && tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 pt-1">
+            {tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
         )
       }
-      <div class="grow w-full">
-        <h1 class="text-xl font-bold">
-          {title}
-          {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
-        </h1>
-        <p class="py-1 text-1xl">{desc}</p>
-        <div class="card-actions justify-end">
-          {
-            tags &&
-              tags.map((tag) => <div class="badge badge-outline">{tag}</div>)
-          }
-        </div>
-      </div>
     </div>
   </a>
 </div>

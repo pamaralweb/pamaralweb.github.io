@@ -9,16 +9,16 @@ const { problem, action, outcome } = Astro.props;
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 not-prose">
-    <div class="bg-base-200 rounded-lg p-4">
-        <h2 class="text-sm font-bold uppercase opacity-75 mb-2">Problema</h2>
-        <p>{problem}</p>
+    <div class="rounded-xl border border-line bg-surface p-4">
+        <h2 class="font-mono text-xs uppercase tracking-wide text-muted mb-2">Problema</h2>
+        <p class="text-sm leading-relaxed">{problem}</p>
     </div>
-    <div class="bg-base-200 rounded-lg p-4">
-        <h2 class="text-sm font-bold uppercase opacity-75 mb-2">Ação</h2>
-        <p>{action}</p>
+    <div class="rounded-xl border border-line bg-surface p-4">
+        <h2 class="font-mono text-xs uppercase tracking-wide text-muted mb-2">Ação</h2>
+        <p class="text-sm leading-relaxed">{action}</p>
     </div>
-    <div class="bg-base-200 rounded-lg p-4">
-        <h2 class="text-sm font-bold uppercase opacity-75 mb-2">Resultado</h2>
-        <p>{outcome}</p>
+    <div class="rounded-xl border border-line bg-surface p-4">
+        <h2 class="font-mono text-xs uppercase tracking-wide text-muted mb-2">Resultado</h2>
+        <p class="text-sm leading-relaxed">{outcome}</p>
     </div>
 </div>

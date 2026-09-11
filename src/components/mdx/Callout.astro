@@ -6,16 +6,16 @@ interface Props {
 
 const { variant = "note", title } = Astro.props;
 
-const alertClass: Record<string, string> = {
-    info: "alert-info",
-    warning: "alert-warning",
-    note: "",
+const styles: Record<string, string> = {
+    info: "border-accent/40 bg-accent/5",
+    warning: "border-warning/50 bg-warning-surface",
+    note: "border-line bg-surface",
 };
 ---
 
-<div class={`alert ${alertClass[variant]} flex-col items-start text-left my-6 not-prose`} role="note">
-    {title && <p class="font-bold">{title}</p>}
-    <div class="text-sm">
+<div class={`flex flex-col items-start gap-1 rounded-xl border p-4 my-6 not-prose ${styles[variant]}`} role="note">
+    {title && <p class="font-display font-semibold text-sm">{title}</p>}
+    <div class="text-sm text-ink/90 leading-relaxed">
         <slot />
     </div>
 </div>

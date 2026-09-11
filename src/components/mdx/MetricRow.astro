@@ -15,12 +15,12 @@ const { metrics } = Astro.props;
 
 {
     metrics.length > 0 && (
-        <div class="stats stats-vertical md:stats-horizontal shadow w-full my-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-6 not-prose">
             {metrics.map((metric) => (
-                <div class="stat">
-                    <div class="stat-title">{metric.label}</div>
-                    <div class="stat-value text-2xl">{metric.value}</div>
-                    {metric.note && <div class="stat-desc">{metric.note}</div>}
+                <div class="rounded-xl border border-line p-4">
+                    <div class="font-mono text-xs uppercase tracking-wide text-muted">{metric.label}</div>
+                    <div class="font-display text-2xl font-semibold mt-1">{metric.value}</div>
+                    {metric.note && <div class="text-xs text-muted mt-1">{metric.note}</div>}
                 </div>
             ))}
         </div>

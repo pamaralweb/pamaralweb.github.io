@@ -43,28 +43,28 @@ const {
             }
 
             <h1 class="title my-2 text-4xl font-bold">{title}</h1>
-            {subtitle && <p class="text-xl opacity-75">{subtitle}</p>}
+            {subtitle && <p class="text-xl text-muted">{subtitle}</p>}
 
             <div class="flex flex-wrap gap-2 my-4 not-prose">
-                {company && <div class="badge badge-outline">{company}</div>}
-                {period && <div class="badge badge-outline">{period}</div>}
-                {platform && <div class="badge badge-outline">{platform}</div>}
-                {disciplines?.map((discipline) => <div class="badge badge-secondary">{discipline}</div>)}
+                {company && <span class="tag">{company}</span>}
+                {period && <span class="tag">{period}</span>}
+                {platform && <span class="tag">{platform}</span>}
+                {disciplines?.map((discipline) => <span class="tag tag-accent">{discipline}</span>)}
             </div>
 
             {
                 (myRole || teamContext) && (
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6 not-prose">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6 not-prose rounded-xl border border-line p-5">
                         {myRole && (
                             <div>
-                                <h2 class="text-sm font-bold uppercase opacity-75 mb-1">Minha atuação</h2>
-                                <p>{myRole}</p>
+                                <h2 class="font-mono text-xs uppercase tracking-wide text-accent mb-1">Minha atuação</h2>
+                                <p class="text-sm leading-relaxed">{myRole}</p>
                             </div>
                         )}
                         {teamContext && (
                             <div>
-                                <h2 class="text-sm font-bold uppercase opacity-75 mb-1">Time</h2>
-                                <p>{teamContext}</p>
+                                <h2 class="font-mono text-xs uppercase tracking-wide text-accent mb-1">Time</h2>
+                                <p class="text-sm leading-relaxed">{teamContext}</p>
                             </div>
                         )}
                     </div>
