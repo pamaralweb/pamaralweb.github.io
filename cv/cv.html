@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Patrick Amaral - UX/UI Designer Sênior</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* Fonte do CV. Gere o PDF com: npm run cv */
+    @page { size: A4; margin: 14mm 15mm 14mm 15mm; }
+
+    :root {
+        --ink: #111827;
+        --text: #374151;
+        --muted: #6b7280;
+        --soft: #9ca3af;
+        --line: #e5e7eb;
+        --accent: #0f766e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body {
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 9.2pt;
+        line-height: 1.45;
+        color: var(--text);
+        background: #fff;
+    }
+    strong { color: var(--ink); font-weight: 600; }
+
+    header { padding-bottom: 10pt; border-bottom: 3pt solid var(--ink); margin-bottom: 14pt; }
+    h1 { font-size: 26pt; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
+    .role { font-size: 11.5pt; color: var(--accent); margin-top: 4pt; }
+    .contact { font-size: 8.4pt; color: var(--muted); margin-top: 7pt; }
+    .contact span { white-space: nowrap; }
+    .contact span + span::before { content: "|"; color: var(--line); margin: 0 6pt; }
+
+    h2 {
+        font-size: 7.6pt; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--ink); padding-bottom: 4pt; border-bottom: 1px solid var(--line); margin: 12pt 0 8pt;
+    }
+    header + section h2 { margin-top: 0; }
+
+    .job { break-inside: avoid; margin-bottom: 7pt; }
+    .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+    .job-title { font-size: 9.8pt; font-weight: 600; color: var(--ink); }
+    .job-date { font-size: 8.8pt; color: var(--muted); white-space: nowrap; }
+    .company { color: var(--accent); margin: 3pt 0 2pt; }
+    .job p { margin-bottom: 2pt; }
+
+    ul { list-style: none; }
+    li { position: relative; padding-left: 10pt; margin-bottom: 1.5pt; }
+    li::before {
+        content: ""; position: absolute; left: 1pt; top: 0.62em;
+        width: 3pt; height: 3pt; border-radius: 50%; background: var(--line);
+    }
+
+    .skills { display: grid; grid-template-columns: 112pt 1fr; row-gap: 7pt; break-inside: avoid; }
+    .skills dt { font-size: 7.8pt; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); padding-top: 1.5pt; }
+
+    .columns { display: grid; grid-template-columns: 1fr 1fr; column-gap: 22pt; break-inside: avoid; }
+    .item { margin-bottom: 8pt; }
+    .item-title { font-weight: 600; color: var(--ink); font-size: 10pt; }
+    .item-meta { color: var(--muted); font-size: 8.8pt; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Patrick Amaral</h1>
+    <p class="role">UX/UI Designer Sênior &nbsp;·&nbsp; foco em UI</p>
+    <p class="contact">
+        <span>Uberlândia, MG, Brasil</span><span>(34) 99630-0677</span><span>pamaralbr@gmail.com</span><span>linkedin.com/in/pamaralbr</span><span>patrickamaral.com.br</span>
+    </p>
+</header>
+
+<section>
+    <h2>Resumo</h2>
+    <p>
+        UX/UI Designer sênior com foco em UI, com <strong>design desde 2003 e interfaces digitais desde 2008</strong>.
+        Passei os últimos 5 anos no <strong>PagBank</strong> como único designer de uma equipe de engenharia que atendia
+        às iniciativas de marketing e aquisição, respondendo por toda a camada de design, da estruturação da experiência
+        ao handoff. Combino <strong>prototipação avançada em Figma</strong>, fluência em <strong>front-end</strong>
+        (HTML, CSS e JavaScript) e um olhar de composição vindo da direção de arte. Trabalho colado à engenharia e trato
+        o handoff como parte do design, não como entrega de arquivo.
+    </p>
+</section>
+
+<section>
+    <h2>Experiência</h2>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">UX Designer Sênior</span><span class="job-date">jun 2021 - jul 2026 &nbsp;·&nbsp; Remoto</span></div>
+        <p class="company">TQI, alocado no PagBank</p>
+        <p>Único designer de uma equipe de engenharia responsável por atender às iniciativas de marketing e aquisição do PagBank, uma das maiores fintechs do Brasil.</p>
+        <ul>
+            <li>Trabalhei em <strong>mais de 40 landing pages</strong>, algumas com milhões de acessos mensais, ligadas à venda de maquininhas de adquirência e à contratação de serviços.</li>
+            <li>Criei páginas para lançamento de novos produtos e serviços, definindo arquitetura da informação, fluxos, wireframes, interface e protótipo de alta fidelidade.</li>
+            <li>Conduzi redesigns orientados por hipóteses que eu levantava na análise de dados ou que chegavam do time de CRO do marketing.</li>
+            <li>Adaptei e componentizei no Figma um <strong>UI Kit para a área não logada</strong> a partir do design system da área logada. Foi a base das landing pages do time até a migração para o DS oficial.</li>
+            <li>Preparei handoff e especificações para engenharia, refinando a solução junto aos desenvolvedores na implementação. Como escrevo HTML, CSS e JavaScript, a conversa técnica acontecia no nível da implementação.</li>
+            <li>Projetei em mobile-first e responsivo, conciliando objetivo de negócio, necessidade do usuário e viabilidade técnica.</li>
+            <li><strong>1º lugar no Hacka PagBank 2025</strong> (7ª edição), tema de IA aplicada aos negócios, e convidado como mentor na edição 2026.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">Co-founder e Service Designer</span><span class="job-date">ago 2020 - jun 2021</span></div>
+        <p class="company">Omnify</p>
+        <p>Spin-off da plataforma de agentes cognitivos desenvolvida no Brain para a Algar Tech. Fui convidado pela Algar Tech, junto com os outros quatro integrantes da squad, para seguir como co-founder.</p>
+        <ul>
+            <li>Concepção e estruturação do produto desde os primeiros estágios da empresa.</li>
+            <li>Service design, fluxos de serviço e design de experiência para a plataforma.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">Service Designer</span><span class="job-date">mar 2020 - ago 2020</span></div>
+        <p class="company">Brain, Centro de Inovação em Negócios Digitais</p>
+        <ul>
+            <li>Mapeamento de jornadas, fluxos de serviço e pontos de contato no projeto Omnify, solução de agentes cognitivos para a Algar Tech.</li>
+            <li>O projeto deu origem à Omnify, spin-off da qual me tornei co-founder.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">Gestor de Tráfego</span><span class="job-date">fev 2019 - mar 2020</span></div>
+        <p class="company">Autônomo</p>
+        <ul>
+            <li>Campanhas de performance em Google Ads e Meta Ads para clientes regionais, com responsabilidade por verba, segmentação, criativos e leitura de resultados.</li>
+            <li>Origem do meu olhar de conversão dentro do design: entender o que acontece antes da página explica muito do que precisa acontecer dentro dela.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">Analista de Comunicação e Analista de Sistemas (Front-end)</span><span class="job-date">jun 2017 - fev 2019</span></div>
+        <p class="company">TQI</p>
+        <ul>
+            <li>Desenvolvimento front-end de interfaces e landing pages em HTML, CSS e JavaScript.</li>
+            <li>Criação e gestão de materiais de comunicação institucional e digital.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">UX Designer</span><span class="job-date">jan 2014 - out 2015</span></div>
+        <p class="company">Algar Telecom</p>
+        <ul>
+            <li>Fluxos, wireframes, interface e handoff do Algar CRM, sistema interno usado pelas equipes da operação.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">Diretor de Arte e Desenvolvedor Web</span><span class="job-date">2004 - 2017 &nbsp;·&nbsp; intermitente</span></div>
+        <p class="company">Autônomo</p>
+        <ul>
+            <li>Criação de sites, desenvolvimento web (HTML, CSS, JavaScript) e direção de arte para empresas regionais, em atuação paralela aos períodos em agência e em empresa.</li>
+            <li>Período em que a prática de front-end se consolidou, base do meu trabalho de handoff hoje.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">UX/UI Designer e Analista de Comunicação</span><span class="job-date">mar 2008 - jan 2011</span></div>
+        <p class="company">Algar Telecom</p>
+        <ul>
+            <li>UX/UI Designer da plataforma de VoIP Azzu e, depois, comunicação institucional e de produtos da empresa.</li>
+        </ul>
+    </div>
+
+    <div class="job">
+        <div class="job-head"><span class="job-title">Diretor de Arte</span><span class="job-date">2003 - 2007</span></div>
+        <p class="company">R&amp;B Propaganda, Prudent Propaganda e Fator Publicidade</p>
+        <ul>
+            <li>Campanhas, anúncios e identidade visual para Tribanco, Martins Atacadista, Algar Telecom, Smart Supermercados e Triângulo Music.</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>Competências</h2>
+    <dl class="skills">
+        <dt>Domínio</dt>
+        <dd>UX Design &nbsp;·&nbsp; UI Design &nbsp;·&nbsp; Arquitetura da Informação &nbsp;·&nbsp; Wireframing &nbsp;·&nbsp; Prototipação avançada em Figma (variáveis, componentes interativos, lógica condicional) &nbsp;·&nbsp; Design de Interação &nbsp;·&nbsp; Design de Interfaces &nbsp;·&nbsp; Mobile-first e responsivo &nbsp;·&nbsp; Handoff e colaboração com engenharia</dd>
+        <dt>Prática</dt>
+        <dd>HTML, CSS e JavaScript &nbsp;·&nbsp; Componentização e uso de Design Systems &nbsp;·&nbsp; Landing pages e páginas de aquisição &nbsp;·&nbsp; CRO e testes A/B &nbsp;·&nbsp; Análise de dados para formulação de hipóteses &nbsp;·&nbsp; Design Thinking &nbsp;·&nbsp; Service Design &nbsp;·&nbsp; Direção de arte</dd>
+        <dt>Em aprofundamento</dt>
+        <dd>Métodos de pesquisa (testes de usabilidade, entrevistas, análise quali e quanti)</dd>
+    </dl>
+</section>
+
+<div class="columns">
+    <section>
+        <h2>Formação</h2>
+        <div class="item">
+            <p class="item-title">Design Digital e Experiência do Usuário</p>
+            <p class="item-meta">UNIASSELVI &nbsp;·&nbsp; 2024 - 2027, em curso</p>
+        </div>
+        <div class="item">
+            <p class="item-title">Idiomas</p>
+            <p class="item-meta">Português nativo &nbsp;·&nbsp; Inglês básico</p>
+        </div>
+    </section>
+    <section>
+        <h2>Certificações e reconhecimentos</h2>
+        <div class="item">
+            <p class="item-title">1º lugar, Hacka PagBank 2025</p>
+            <p class="item-meta">7ª edição, tema de IA aplicada aos negócios. Mentor na edição 2026.</p>
+        </div>
+        <div class="item">
+            <p class="item-title">Tera</p>
+            <p class="item-meta">Digital Product Design &nbsp;·&nbsp; UI Design &nbsp;·&nbsp; UX Research &nbsp;·&nbsp; UX Writing &nbsp;·&nbsp; Design Thinking</p>
+        </div>
+        <div class="item">
+            <p class="item-title">Alura</p>
+            <p class="item-meta">JavaScript</p>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
