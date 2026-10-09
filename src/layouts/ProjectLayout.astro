@@ -1,0 +1,59 @@
+---
+import { ProjectSchema } from "../content.config";
+import BaseLayout from "./BaseLayout.astro";
+import ScreenPair from "../components/ScreenPair.astro";
+
+export interface Props extends ProjectSchema {}
+
+const { title, description, company, year, type, myRole, liveUrl, thumbnail, screens } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={thumbnail}>
+    <main class="md:flex md:justify-center">
+        <article class="max-w-[900px] w-full">
+            <a href="/trabalhos" class="text-sm text-muted hover:text-accent">← Todos os trabalhos</a>
+
+            <h1 class="title mt-4 mb-2 text-4xl font-bold">{title}</h1>
+            {description && <p class="text-lg text-muted">{description}</p>}
+
+            <div class="flex flex-wrap gap-2 my-4">
+                {company && <span class="tag">{company}</span>}
+                {type && <span class="tag">{type}</span>}
+                {year && <span class="tag">{year}</span>}
+            </div>
+
+            {
+                myRole && (
+                    <div class="my-6 rounded-xl border border-line p-5">
+                        <h2 class="font-mono text-xs uppercase tracking-wide text-accent mb-1">Minha atuação</h2>
+                        <p class="text-sm leading-relaxed">{myRole}</p>
+                    </div>
+                )
+            }
+
+            {
+                liveUrl && (
+                    <div class="my-6">
+                        <a href={liveUrl} target="_blank" rel="noopener" class="btn btn-outline">
+                            Ver em produção<span class="sr-only"> (abre em nova aba)</span>
+                        </a>
+                        <p class="text-xs text-muted mt-2">
+                            A versão no ar pode ter sido alterada depois da minha entrega. As imagens abaixo são o
+                            registro do layout que desenhei.
+                        </p>
+                    </div>
+                )
+            }
+
+            <div class="prose prose-lg max-w-none">
+                <slot />
+            </div>
+
+            {
+                screens.map((screen, index) => (
+                    <ScreenPair id={`tela-${index + 1}`} {...screen} />
+                ))
+            }
+        </article>
+    </main>
+</BaseLayout>

@@ -1,12 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HorizontalCard from "../../components/HorizontalCard.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 
-const allCases = await getCollection("cases");
-const cases = allCases
-    .filter((entry) => entry.data.status === "published" && !entry.data.private)
-    .sort((a, b) => a.data.order - b.data.order);
+const isListed = ({ data }: { data: { status: string; private: boolean } }) =>
+    data.status === "published" && !data.private;
+
+const cases = (await getCollection("cases", isListed)).sort((a, b) => a.data.order - b.data.order);
+const projects = (await getCollection("projects", isListed)).sort((a, b) => a.data.order - b.data.order);
 
 const disciplinesInUse = Array.from(
     new Set(cases.flatMap((entry) => entry.data.disciplines))
@@ -15,8 +17,10 @@ const disciplinesInUse = Array.from(
 
 <BaseLayout title="Trabalhos" sideBarActiveItemID="trabalhos">
     <div class="mb-5">
-        <div class="text-3xl w-full font-bold">Trabalhos</div>
+        <h1 class="text-3xl w-full font-bold">Trabalhos</h1>
     </div>
+
+    <h2 class="font-display text-xl font-semibold mb-4">Cases</h2>
 
     {
         cases.length === 0 ? (
@@ -57,6 +61,28 @@ const disciplinesInUse = Array.from(
                     ))}
                 </ul>
             </>
+        )
+    }
+
+    {
+        projects.length > 0 && (
+            <section class="mt-12" aria-labelledby="outros-projetos">
+                <h2 id="outros-projetos" class="font-display text-xl font-semibold mb-1">Outros projetos</h2>
+                <p class="text-sm text-muted mb-4">Entregas de UI em produção, com layout desktop e mobile.</p>
+                <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {projects.map((entry) => (
+                        <li>
+                            <ProjectCard
+                                title={entry.data.title}
+                                img={entry.data.thumbnail}
+                                imgAlt={entry.data.thumbnailAlt}
+                                url={"/trabalhos/" + entry.id}
+                                tags={[entry.data.company, entry.data.type].filter((tag): tag is string => !!tag)}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </section>
         )
     }
 </BaseLayout>

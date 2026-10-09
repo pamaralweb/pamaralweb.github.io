@@ -1,0 +1,64 @@
+---
+// Layout desktop e mobile lado a lado. Prints de pagina inteira sao muito altos,
+// entao comecam recortados e o botao expande pra altura total.
+interface Props {
+    id: string;
+    label?: string;
+    desktop: string;
+    desktopAlt?: string;
+    mobile?: string;
+    mobileAlt?: string;
+}
+
+const { id, label, desktop, desktopAlt, mobile, mobileAlt } = Astro.props;
+const framesId = `${id}-frames`;
+---
+
+<section class="screen-pair my-10" aria-labelledby={label ? `${id}-label` : undefined}>
+    {label && <h2 id={`${id}-label`} class="font-display text-2xl font-semibold mb-4">{label}</h2>}
+
+    <div
+        id={framesId}
+        class:list={["grid grid-cols-1 gap-6 items-start", mobile && "md:grid-cols-[2fr_1fr]"]}
+    >
+        <figure>
+            <figcaption class="font-mono text-xs uppercase tracking-wide text-muted mb-2">Desktop</figcaption>
+            <div class="screen-frame relative max-h-[640px] overflow-hidden rounded-lg border border-line">
+                <img src={desktop} alt={desktopAlt ?? ""} loading="lazy" class="block w-full h-auto" />
+                <div class="screen-fade pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-canvas"></div>
+            </div>
+        </figure>
+        {
+            mobile && (
+                <figure class="max-w-[320px] w-full mx-auto md:max-w-none">
+                    <figcaption class="font-mono text-xs uppercase tracking-wide text-muted mb-2">Mobile</figcaption>
+                    <div class="screen-frame relative max-h-[640px] overflow-hidden rounded-lg border border-line">
+                        <img src={mobile} alt={mobileAlt ?? ""} loading="lazy" class="block w-full h-auto" />
+                        <div class="screen-fade pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-canvas"></div>
+                    </div>
+                </figure>
+            )
+        }
+    </div>
+
+    <button type="button" class="screen-toggle btn btn-outline mt-4" aria-expanded="false" aria-controls={framesId}>
+        Ver página inteira
+    </button>
+</section>
+
+<script>
+    document.querySelectorAll<HTMLButtonElement>(".screen-toggle").forEach((button) => {
+        const section = button.closest<HTMLElement>(".screen-pair");
+        if (!section) return;
+
+        button.addEventListener("click", () => {
+            const expanded = button.getAttribute("aria-expanded") === "true";
+            section.querySelectorAll(".screen-frame").forEach((frame) => frame.classList.toggle("max-h-[640px]", expanded));
+            section.querySelectorAll(".screen-fade").forEach((fade) => fade.classList.toggle("hidden", !expanded));
+            button.setAttribute("aria-expanded", String(!expanded));
+            button.textContent = expanded ? "Ver página inteira" : "Recolher página";
+            // Ao recolher, volta pro topo da secao pra pessoa nao ficar perdida no meio da pagina.
+            if (expanded) section.scrollIntoView({ block: "start" });
+        });
+    });
+</script>

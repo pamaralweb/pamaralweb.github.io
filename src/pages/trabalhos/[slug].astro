@@ -1,24 +1,42 @@
 ---
 import { CollectionEntry, getCollection, render } from 'astro:content';
-import { CaseSchema } from '../../content.config';
 import CaseLayout from '../../layouts/CaseLayout.astro';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
 
+// Cases e projetos dividem o mesmo prefixo de URL (/trabalhos/<slug>),
+// entao um slug nao pode existir nas duas collections.
 export async function getStaticPaths() {
-    const caseEntries = await getCollection('cases', ({ data }) => data.status === 'published');
-    return caseEntries.map(entry => ( {
+    const isPublished = ({ data }: { data: { status: string } }) => data.status === 'published';
+    const caseEntries = await getCollection('cases', isPublished);
+    const projectEntries = await getCollection('projects', isPublished);
+
+    const caseIds = new Set(caseEntries.map((entry) => entry.id));
+    const duplicated = projectEntries.find((entry) => caseIds.has(entry.id));
+    if (duplicated) {
+        throw new Error(`slug "${duplicated.id}" existe em cases e em projects. Renomeie um dos arquivos.`);
+    }
+
+    return [...caseEntries, ...projectEntries].map((entry) => ({
         params: { slug: entry.id }, props: { entry },
-    } ));
+    }));
 }
 
 interface Props {
-    entry: CollectionEntry<"cases">;
+    entry: CollectionEntry<"cases"> | CollectionEntry<"projects">;
 }
 
 const { entry } = Astro.props;
-const caseData: CaseSchema = entry.data;
 const { Content } = await render(entry);
 ---
 
-<CaseLayout {...caseData}>
-    <Content />
-</CaseLayout>
+{
+    entry.collection === 'cases' ? (
+        <CaseLayout {...entry.data}>
+            <Content />
+        </CaseLayout>
+    ) : (
+        <ProjectLayout {...entry.data}>
+            <Content />
+        </ProjectLayout>
+    )
+}

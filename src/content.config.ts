@@ -136,8 +136,74 @@ const casesSchema = casesSchemaBase.superRefine((data, ctx) => {
     }
 });
 
+// Projeto: formato leve, sem narrativa de case. Serve pra mostrar volume de
+// entregas de UI (landing pages, blog etc.) com layout desktop e mobile.
+const screenSchema = z.object({
+    // Rotulo da tela quando o projeto tem mais de uma (ex: "Home", "Post").
+    label: z.string().optional(),
+    desktop: z.string(),
+    desktopAlt: z.string().optional(),
+    mobile: z.string().optional(),
+    mobileAlt: z.string().optional(),
+});
+
+const projectsSchemaBase = z.object({
+    title: z.string().optional(),
+    description: z.string().optional(),
+    company: z.string().optional(),
+    year: z.string().optional(),
+    type: z.string().optional(),
+    myRole: z.string().optional(),
+    // Pagina no ar. Pode ter sido alterada depois da entrega, as imagens sao o registro.
+    liveUrl: z.string().url().optional(),
+
+    order: z.number().default(0),
+    status: z.enum(CASE_STATUSES).default("draft"),
+    private: z.boolean().default(false),
+
+    thumbnail: z.string().optional(),
+    thumbnailAlt: z.string().optional(),
+    screens: z.array(screenSchema).default([]),
+});
+
+const projectsSchema = projectsSchemaBase.superRefine((data, ctx) => {
+    if (data.status !== "published") return;
+
+    const requiredForPublish: Array<[string | undefined, (string | number)[]]> = [
+        [data.title, ["title"]],
+        [data.description, ["description"]],
+        [data.company, ["company"]],
+        [data.myRole, ["myRole"]],
+        [data.thumbnail, ["thumbnail"]],
+        [data.thumbnailAlt, ["thumbnailAlt"]],
+    ];
+    data.screens.forEach((screen, index) => {
+        requiredForPublish.push([screen.desktopAlt, ["screens", index, "desktopAlt"]]);
+        if (screen.mobile) {
+            requiredForPublish.push([screen.mobileAlt, ["screens", index, "mobileAlt"]]);
+        }
+    });
+    for (const [value, path] of requiredForPublish) {
+        if (isBlank(value)) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: `"${path.join(".")}" e obrigatorio para publicar um projeto (status: published)`,
+                path,
+            });
+        }
+    }
+    if (data.screens.length === 0) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "ao menos uma tela (screens) e obrigatoria para publicar um projeto",
+            path: ["screens"],
+        });
+    }
+});
+
 export type BlogSchema = z.infer<typeof blogSchema>;
 export type CaseSchema = z.infer<typeof casesSchema>;
+export type ProjectSchema = z.infer<typeof projectsSchema>;
 
 const blogCollection = defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
@@ -148,7 +214,13 @@ const casesCollection = defineCollection({
     schema: casesSchema,
 });
 
+const projectsCollection = defineCollection({
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
+    schema: projectsSchema,
+});
+
 export const collections = {
     'blog': blogCollection,
     'cases': casesCollection,
+    'projects': projectsCollection,
 }
