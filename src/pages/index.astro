@@ -26,29 +26,25 @@ const featuredCases = (await getCollection("cases", ({ data }) => data.status ==
     </div>
   </div>
 
-  <div>
-    <h2 class="font-display text-2xl font-semibold mb-4">Trabalhos em destaque</h2>
-  </div>
-
+  {/* A secao so aparece quando algum case estiver com featured: true no frontmatter. */}
   {
-    featuredCases.length === 0 ? (
-      <div class="rounded-xl border border-line bg-surface p-4">
-        <p>Nenhum case em destaque ainda. Veja todos em <a href="/trabalhos/">/trabalhos</a>.</p>
-      </div>
-    ) : (
-      <div class="flex flex-col gap-4">
-        {featuredCases.map((entry) => (
-          <HorizontalCard
-            title={entry.data.title}
-            img={entry.data.thumbnail}
-            desc={entry.data.subtitle}
-            url={"/trabalhos/" + entry.id}
-            target="_self"
-            badge={entry.data.confidential ? "Confidencial" : undefined}
-            tags={entry.data.disciplines}
-          />
-        ))}
-      </div>
+    featuredCases.length > 0 && (
+      <section aria-labelledby="destaques">
+        <h2 id="destaques" class="font-display text-2xl font-semibold mb-4">Trabalhos em destaque</h2>
+        <div class="flex flex-col gap-4">
+          {featuredCases.map((entry) => (
+            <HorizontalCard
+              title={entry.data.title}
+              img={entry.data.thumbnail}
+              desc={entry.data.subtitle}
+              url={"/trabalhos/" + entry.id}
+              target="_self"
+              badge={entry.data.confidential ? "Confidencial" : undefined}
+              tags={entry.data.disciplines}
+            />
+          ))}
+        </div>
+      </section>
     )
   }
 </BaseLayout>
