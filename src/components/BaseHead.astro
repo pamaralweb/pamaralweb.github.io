@@ -10,6 +10,9 @@ export interface Props {
 }
 
 const { title, description, image = '/social_img.jpg' } = Astro.props;
+
+// GA4 so no build de producao, pra visitas em localhost (npm run dev) nao entrarem nos relatorios.
+const enableAnalytics = import.meta.env.PROD;
 ---
 
 <!-- Global Metadata -->
@@ -17,6 +20,22 @@ const { title, description, image = '/social_img.jpg' } = Astro.props;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
+
+{
+	enableAnalytics && (
+		<>
+			<!-- Google tag (gtag.js) -->
+			<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-M7FQHC9Y8N"></script>
+			<script is:inline>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+
+				gtag('config', 'G-M7FQHC9Y8N');
+			</script>
+		</>
+	)
+}
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
