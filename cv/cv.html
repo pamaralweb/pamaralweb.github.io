@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
     /* Fonte do CV. Gere o PDF com: npm run cv */
-    @page { size: A4; margin: 14mm 15mm 14mm 15mm; }
+    @page { size: A4; margin: 12mm 15mm 11mm 15mm; }
 
     :root {
         --ink: #111827;
@@ -39,7 +39,7 @@
 
     h2 {
         font-size: 7.6pt; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-        color: var(--ink); padding-bottom: 4pt; border-bottom: 1px solid var(--line); margin: 12pt 0 8pt;
+        color: var(--ink); padding-bottom: 4pt; border-bottom: 1px solid var(--line); margin: 11pt 0 7pt;
     }
     header + section h2 { margin-top: 0; }
 
@@ -57,11 +57,12 @@
         width: 3pt; height: 3pt; border-radius: 50%; background: var(--line);
     }
 
-    .skills { display: grid; grid-template-columns: 112pt 1fr; row-gap: 7pt; break-inside: avoid; }
+    .skills { display: grid; grid-template-columns: 112pt 1fr; row-gap: 5pt; break-inside: avoid; }
     .skills dt { font-size: 7.8pt; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); padding-top: 1.5pt; }
 
     .columns { display: grid; grid-template-columns: 1fr 1fr; column-gap: 22pt; break-inside: avoid; }
-    .item { margin-bottom: 8pt; }
+    .item { margin-bottom: 6pt; }
+    .nowrap { white-space: nowrap; }
     .item-title { font-weight: 600; color: var(--ink); font-size: 10pt; }
     .item-meta { color: var(--muted); font-size: 8.8pt; }
 </style>
@@ -206,6 +207,10 @@
         <div class="item">
             <p class="item-title">1º lugar, Hacka PagBank 2025</p>
             <p class="item-meta">7ª edição, tema de IA aplicada aos negócios. Mentor na edição 2026.</p>
+        </div>
+        <div class="item">
+            <p class="item-title">1º lugar, concurso nacional de logomarca do <span class="nowrap">CBH-Pitimbu</span></p>
+            <p class="item-meta">Junho de 2009. Organizado pelo Comitê da Bacia Hidrográfica do Rio Pitimbu (CBH-Pitimbu).</p>
         </div>
         <div class="item">
             <p class="item-title">Tera</p>
