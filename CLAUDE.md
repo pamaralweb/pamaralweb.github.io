@@ -49,7 +49,8 @@ Configurações já feitas:
 3. Identidade visual: EM ABERTO (tipografia, escala de espaçamento, paleta,
    layout). Só tema light/avatar redondo/remoção do crédito do template
    foram feitos até agora, a pedido pontual, fora de ordem
-4. Conteúdo real: EM ANDAMENTO (1 de 3 cases publicado)
+4. Conteúdo real: EM ANDAMENTO (1 de 3 cases publicado, 11 projetos de UI
+   do PagBank publicados em "Outros projetos", sem ano preenchido ainda)
 
 Trabalhamos uma etapa por vez. Não antecipe etapa seguinte sem eu pedir.
 
@@ -70,6 +71,11 @@ Trabalhamos uma etapa por vez. Não antecipe etapa seguinte sem eu pedir.
 - Serão três cases, no máximo quatro. Curadoria por força do case, não por
   data. Os 2 cases fictícios usados pra validar a estrutura foram removidos
   do repo assim que o primeiro case real ficou pronto.
+- Entregas de UI sem narrativa de case (LPs e blog do PagBank) ficam na
+  collection separada `projects`, com schema leve: descrição, minha atuação,
+  link de produção e telas desktop/mobile. Aparecem em /trabalhos como "Outros
+  projetos", abaixo dos cases, e não contam no limite de 3 a 4 cases. Cases e
+  projetos dividem a URL /trabalhos/<slug>, então o slug não pode se repetir.
 - O visual padrão do Astrofy tem cara de site de desenvolvedor e será
   substituído na etapa 3. Não é para ser mantido.
 
