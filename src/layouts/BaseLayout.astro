@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
@@ -16,6 +17,8 @@ const { image, title = SITE_TITLE, description = SITE_DESCRIPTION, includeSideba
     <BaseHead title={title} description={description} image={image} />
   </head>
   <body class="bg-canvas text-ink">
+    <!-- No inicio do body pra quem navega por teclado ou leitor de tela encontrar o aviso primeiro. -->
+    <CookieBanner />
     <div class="lg:flex">
       <input id="nav-toggle" type="checkbox" class="peer hidden" />
       <label

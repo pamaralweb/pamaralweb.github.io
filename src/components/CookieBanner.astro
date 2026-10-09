@@ -1,0 +1,87 @@
+---
+// Aviso de cookies (LGPD). O GA4 so carrega depois do aceite; a logica de
+// carregamento fica no BaseHead (window.enableAnalytics). A escolha fica salva
+// no localStorage e pode ser revista pelo link "Preferencias de cookies" do rodape.
+---
+
+<section
+    id="cookie-banner"
+    aria-label="Aviso de cookies"
+    hidden
+    class="fixed inset-x-4 bottom-4 z-30 rounded-xl border border-line bg-canvas p-5 shadow-lg sm:left-auto sm:right-24 sm:max-w-md print:hidden"
+>
+    <p class="text-sm leading-relaxed">
+        Uso cookies do Google Analytics para entender, de forma agregada, como as pessoas navegam por aqui. Eles só
+        são ativados se você aceitar, e você pode mudar de ideia quando quiser em "Preferências de cookies", no rodapé.
+    </p>
+    <div class="mt-4 flex gap-3">
+        <button type="button" class="btn btn-outline flex-1" data-consent="denied">Recusar</button>
+        <button type="button" class="btn btn-outline flex-1" data-consent="granted">Aceitar</button>
+    </div>
+</section>
+
+<script>
+    const STORAGE_KEY = "cookie-consent";
+    const banner = document.getElementById("cookie-banner");
+
+    function readChoice(): string | null {
+        try {
+            return localStorage.getItem(STORAGE_KEY);
+        } catch {
+            return null;
+        }
+    }
+
+    function saveChoice(choice: string) {
+        try {
+            localStorage.setItem(STORAGE_KEY, choice);
+        } catch {
+            // Sem storage (aba anonima restrita etc.): a escolha vale so pra esta pagina.
+        }
+    }
+
+    // Apaga os cookies do GA4 (_ga e _ga_<id>) quando a pessoa revoga o aceite.
+    function clearAnalyticsCookies() {
+        const domains = ["", `; domain=${location.hostname}`, `; domain=.${location.hostname.replace(/^www\./, "")}`];
+        document.cookie.split(";").forEach((cookie) => {
+            const name = cookie.split("=")[0].trim();
+            if (!name.startsWith("_ga")) return;
+            domains.forEach((domain) => {
+                document.cookie = `${name}=; Max-Age=0; path=/${domain}`;
+            });
+        });
+    }
+
+    function applyChoice(choice: string) {
+        const w = window as any;
+        if (choice === "granted") {
+            w.gtag?.("consent", "update", { analytics_storage: "granted" });
+            w.enableAnalytics?.();
+        } else {
+            w.gtag?.("consent", "update", { analytics_storage: "denied" });
+            clearAnalyticsCookies();
+        }
+    }
+
+    function showBanner() {
+        if (banner) banner.hidden = false;
+    }
+
+    if (!readChoice()) showBanner();
+
+    banner?.addEventListener("click", (event) => {
+        const button = (event.target as HTMLElement).closest<HTMLButtonElement>("button[data-consent]");
+        if (!button) return;
+        const choice = button.dataset.consent ?? "denied";
+        saveChoice(choice);
+        applyChoice(choice);
+        banner.hidden = true;
+    });
+
+    document.querySelectorAll("[data-cookie-preferences]").forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+            showBanner();
+            banner?.querySelector<HTMLButtonElement>("button")?.focus();
+        });
+    });
+</script>

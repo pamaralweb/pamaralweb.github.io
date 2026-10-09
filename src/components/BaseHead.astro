@@ -24,14 +24,34 @@ const enableAnalytics = import.meta.env.PROD;
 {
 	enableAnalytics && (
 		<>
-			<!-- Google tag (gtag.js) -->
-			<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-M7FQHC9Y8N"></script>
+			<!-- Google tag (gtag.js) com Consent Mode: so carrega depois do aceite no CookieBanner -->
 			<script is:inline>
 				window.dataLayer = window.dataLayer || [];
 				function gtag(){dataLayer.push(arguments);}
-				gtag('js', new Date());
 
-				gtag('config', 'G-M7FQHC9Y8N');
+				var analyticsGranted = false;
+				try { analyticsGranted = localStorage.getItem('cookie-consent') === 'granted'; } catch (e) {}
+
+				gtag('consent', 'default', {
+					ad_storage: 'denied',
+					ad_user_data: 'denied',
+					ad_personalization: 'denied',
+					analytics_storage: analyticsGranted ? 'granted' : 'denied'
+				});
+
+				// Chamado aqui se o aceite ja estava salvo, ou pelo CookieBanner no clique em Aceitar.
+				window.enableAnalytics = function () {
+					if (window.analyticsLoaded) return;
+					window.analyticsLoaded = true;
+					gtag('js', new Date());
+					gtag('config', 'G-M7FQHC9Y8N');
+					var script = document.createElement('script');
+					script.async = true;
+					script.src = 'https://www.googletagmanager.com/gtag/js?id=G-M7FQHC9Y8N';
+					document.head.appendChild(script);
+				};
+
+				if (analyticsGranted) window.enableAnalytics();
 			</script>
 		</>
 	)
