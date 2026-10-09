@@ -1,10 +1,16 @@
 # Contexto do projeto: portfólio patrickamaral.com.br
 
 ## Quem sou
-Patrick Amaral, Product Designer sênior, 17 anos de experiência em design
-digital. Base em Uberlândia MG. Trabalhei no PagBank de 2021 a 2026, hoje em
-busca de recolocação em vagas de UX/UI e Product Design, preferencialmente
+Patrick Amaral, UX/UI Designer sênior com foco em UI. Design desde 2003,
+interfaces digitais desde 2008 (use essas datas, não contagem de anos). Base
+em Uberlândia MG. Trabalhei no PagBank de 2021 a 2026,
+hoje em busca de recolocação em vagas de UX/UI e UI Design, preferencialmente
 remotas.
+
+Não me posiciono como Product Designer. Ainda não conduzi testes de
+usabilidade nem entrevistas com usuários e ainda não aplico acessibilidade
+(WCAG) nos projetos; são áreas em estudo. Não escreva textos que sugiram o
+contrário.
 
 Tenho fluência em HTML, CSS e JS e domínio avançado de Figma. Pode ser técnico
 comigo, não precisa explicar conceito básico. Prefiro entender a decisão a
